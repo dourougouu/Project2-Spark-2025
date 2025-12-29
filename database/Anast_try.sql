@@ -2,6 +2,7 @@
 
 CREATE DATABASE mysparkproject;
 
+USE mysparkproject;
 CREATE TABLE providers(
     provider_id int NOT NULL AUTO_INCREMENT,
     p_name varchar(100) NOT NULL, 
@@ -49,3 +50,4 @@ CREATE TABLE user_interactions(
         FOREIGN KEY(course_id) REFERENCES courses(course_id) 
         ON UPDATE CASCADE ON DELETE CASCADE
 );
+
