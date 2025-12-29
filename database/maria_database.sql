@@ -26,8 +26,8 @@ create table courses(
     time_updated TIMESTAMP default CURRENT_TIMESTAMP 
        ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY(course_id),
-    UNIQUE(source_id_, source_course_id),   --ελεγχουμε οτι δεν εισαγεται το ιδιο μαθημα δυο φορες
-    FOREIGN KEY (source_id_) REFERENCES sources(source_id)
+    UNIQUE(source_id, source_course_id),   --ελεγχουμε οτι δεν εισαγεται το ιδιο μαθημα δυο φορες
+    FOREIGN KEY (source_id) REFERENCES sources(source_id)
 );
 
 --θεματικες των repositories (πχ AI, Web Development, Data Science)
