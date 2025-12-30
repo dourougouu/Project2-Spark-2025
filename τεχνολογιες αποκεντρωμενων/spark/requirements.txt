@@ -1,4 +1,0 @@
-pyspark==3.5.0
-pymongo==4.6.0
-pymongo-spark==0.1
-
