@@ -51,3 +51,8 @@ CREATE TABLE user_interactions(
         ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+-- Έστω κάποια παραδείγματα από online courses
+-- Εισαγωγή αρχικών δεδομένων για τους Providers
+-- INSERT INTO providers (p_name, website_url) VALUES 
+-- ('Udemy', 'https://www.udemy.com'), 
+-- ('Coursera', 'https://www.coursera.org');
