@@ -5,7 +5,7 @@ from datetime import datetime
 
 # 1. ΣΥΝΔΕΣΗ ΜΕ ΤΗ ΒΑΣΗ ΣΟΥ (XAMPP Default)
 def connect_to_db():
-    ports = [3306, 3307] # Οι δύο πιο συνηθισμένες θύρες του XAMPP
+    ports = [3306, 3307] # Οι δύο πιο συνηθισμένες θύρες του XAMPP, για να μην έχουμε διαφορετικές θύρες 
     for port in ports:
         try:
             conn = mysql.connector.connect(
@@ -26,7 +26,7 @@ def connect_to_db():
     
 # 2. ΜΕΤΑΣΧΗΜΑΤΙΣΜΟΣ ΓΙΑ ΤΟ ΕΝΙΑΙΟ ΣΧΗΜΑ (4.2 της εκφώνησης)
 def transform_row(raw_data, source_id, source_type):
-    # Λίστα αποδεκτών τιμών για το ENUM της βάσης σου
+    # Λίστα αποδεκτών τιμών για το ENUM της βάσης 
     valid_levels = ['Beginner', 'Intermediate', 'Advanced', 'All Levels']
     
     if source_type == 'coursera':
