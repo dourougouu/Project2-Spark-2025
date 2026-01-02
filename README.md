@@ -16,7 +16,7 @@
 <ul>
   <li><strong>Front-end:</strong> React (Hooks, React Router)</li>
   <li><strong>Back-end / API:</strong> Node.js + Express (ή άλλο, τεκμηριώστε την επιλογή)</li>
-  <li><strong>Database:</strong> PostgreSQL / MySQL ή MongoDB</li>
+  <li><strong>Database:</strong> MySQL</li>
   <li><strong>Big Data & ML:</strong> Apache Spark (Spark SQL, MLlib / PySpark)</li>
   <li><strong>Format:</strong> REST / JSON για interoperability</li>
 </ul>
