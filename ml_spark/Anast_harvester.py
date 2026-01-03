@@ -131,4 +131,10 @@ def process_udacity():
 
 if __name__ == "__main__":
     process_coursera()
+
     process_udacity()
+
+#    (oo)   (oo)   (oo)
+#    /¥ \   /¥ \   /¥ \
+#   _(__)_ _(__)_ _(__)_
+#   HARVEST  HARVEST  HARVEST
