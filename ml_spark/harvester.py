@@ -7,7 +7,7 @@ from datetime import datetime
 # --- ΡΥΘΜΙΣΕΙΣ ---
 DB_CONFIG = { 'user': 'root', 'password': '', 'host': 'localhost', 'database': 'spark' }
 
-# Λίστα που θα μαζεύει όλα τα μαθήματα για το ενιαίο JSON (Βήμα 4.2)
+# Λίστα που θα μαζεύει όλα τα μαθήματα για το ενιαίο JSON 
 unified_data_for_spark = []
 
 def get_connection():
@@ -40,7 +40,7 @@ def upsert_course_safe(cursor, source_id, source_course_id, title, summary, url,
     try:
         cursor.execute(sql, (source_id, str(source_course_id), title, summary, final_level, url))
         
-        # 2. ΠΡΟΣΘΗΚΗ: Αποθήκευση στη λίστα για το ενιαίο JSON (Βήμα 4.2)
+        # 2. Αποθήκευση στη λίστα για το ενιαίο JSON 
         unified_data_for_spark.append({
             "source_id": source_id,
             "source_course_id": str(source_course_id),
@@ -132,7 +132,7 @@ if __name__ == "__main__":
     process_coursera()
     process_udacity()
 
-    # ΠΡΟΣΘΗΚΗ: Δημιουργία του ενιαίου αρχείου JSON για το Spark (Βήμα 4.2)
+    # Δημιουργία του ενιαίου αρχείου JSON για το Spark 
     print("\n--- ΔΗΜΙΟΥΡΓΙΑ ΕΝΙΑΙΟΥ ΑΠΟΘΕΤΗΡΙΟΥ (JSON) ---")
     with open('unified_repository.json', 'w', encoding='utf-8') as f:
         json.dump(unified_data_for_spark, f, ensure_ascii=False, indent=4)
