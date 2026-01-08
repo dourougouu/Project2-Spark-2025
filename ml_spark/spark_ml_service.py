@@ -36,5 +36,5 @@ final_results = results.select("title", "source_course_id", "cluster_id", "featu
 # Αποθήκευση σε JSON μορφή που θα διαβάσει το API
 final_results.write.mode("overwrite").json("ml_results.json")
 
-print("🚀 Το Spark ML Pipeline ολοκληρώθηκε επιτυχώς!")
+print("Το Spark ML Pipeline ολοκληρώθηκε επιτυχώς!")
 spark.stop()
