@@ -135,15 +135,9 @@ if __name__ == "__main__":
     process_udacity()
 
 
-# ΠΡΟΣΘΗΚΗ: Δημιουργία του ενιαίου αρχείου JSON για το Spark (Βήμα 4.2)
-    print("\n--- ΔΗΜΙΟΥΡΓΙΑ ΕΝΙΑΙΟΥ ΑΠΟΘΕΤΗΡΙΟΥ (JSON) ---")
-    with open('unified_repository.json', 'w', encoding='utf-8') as f:
-        json.dump(unified_data_for_spark, f, ensure_ascii=False, indent=4)
-    print(f"✅ Το αρχείο 'unified_repository.json' δημιουργήθηκε με {len(unified_data_for_spark)} εγγραφές.")
-
-
 #    (oo)   (oo)   (oo)
 #    /¥ \   /¥ \   /¥ \
 #   _(__)_ _(__)_ _(__)_
 #   HARVEST  HARVEST  HARVEST
+
 
