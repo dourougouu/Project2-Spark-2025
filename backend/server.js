@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Σύνδεση με τη βάση 'spark' [cite: 108]
+// Σύνδεση με τη βάση 'spark' 
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -19,7 +19,7 @@ const db = mysql.createConnection({
 // --- ENDPOINTS ---
 
 /**
- * [1] GET /courses (List, Filters, Pagination) [cite: 104]
+ * [1] GET /courses (List, Filters, Pagination) 
  */
 app.get('/api/courses', (req, res) => {
     let { page = 1, limit = 10, search, level, source } = req.query;
@@ -51,7 +51,7 @@ app.get('/api/courses', (req, res) => {
 });
 
 /**
- * [2] GET /courses/{id} (Details) [cite: 105]
+ * [2] GET /courses/{id} (Details)
  */
 app.get('/api/courses/:id', (req, res) => {
     const query = `
@@ -72,7 +72,7 @@ app.get('/api/courses/:id', (req, res) => {
 });
 
 /**
- * [3] GET /courses/{id}/similar (Spark-based recommendations) [cite: 106]
+ * [3] GET /courses/{id}/similar (Spark-based recommendations) 
  * Διαβάζει από τον πίνακα course_similarities που γεμίζει το Spark 
  */
 app.get('/api/courses/:id/similar', (req, res) => {
@@ -90,8 +90,8 @@ app.get('/api/courses/:id/similar', (req, res) => {
 });
 
 /**
- * [4] POST /sync/{source} (Trigger harvesting) [cite: 107]
- * Εκτελεί το python script που μας έδωσες [cite: 117]
+ * [4] POST /sync/{source} (Trigger harvesting) 
+ * Εκτελεί το python script που μας έδωσες 
  */
 app.post('/api/sync/:source', (req, res) => {
     const source = req.params.source;
@@ -105,8 +105,8 @@ app.post('/api/sync/:source', (req, res) => {
 });
 
 /**
- * [5] Endpoint για Spark jobs (Serving Data) [cite: 122]
- * Επιστρέφει όλα τα μαθήματα (title/summary) για το Vectorization του Spark [cite: 82]
+ * [5] Endpoint για Spark jobs (Serving Data) 
+ * Επιστρέφει όλα τα μαθήματα (title/summary) για το Vectorization του Spark 
  */
 app.get('/api/internal/spark-data', (req, res) => {
     db.query("SELECT course_id, title, summary FROM courses", (err, results) => {
@@ -116,4 +116,5 @@ app.get('/api/internal/spark-data', (req, res) => {
 });
 
 const PORT = 5000;
+
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
