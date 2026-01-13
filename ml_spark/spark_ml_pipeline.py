@@ -104,3 +104,7 @@ clusters_df.write \
 print("Spark ML Pipeline completed successfully")
 spark.stop()
 
+#CREATE TABLE course_clusters (
+#  course_id INT PRIMARY KEY,
+#  cluster_id INT
+#);
