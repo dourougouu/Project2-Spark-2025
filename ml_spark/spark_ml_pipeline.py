@@ -71,7 +71,7 @@ pipeline = Pipeline(stages=[
 ])
 
 pipeline_model = pipeline.fit(courses_df)
-ml_df = pipeline_model.transform(courses_df)
+ml_df = pipeline_model.transform(courses_df).cache()
 
 #KMeans Clustering
 kmeans = KMeans(
@@ -108,3 +108,4 @@ spark.stop()
 #  course_id INT PRIMARY KEY,
 #  cluster_id INT
 #);
+
