@@ -51,7 +51,7 @@ app.get('/api/courses', (req, res) => {
 });
 
 /**
- * [2] GET /courses/{id} (Details)
+ * [2] GET /courses/{id} (Details) 
  */
 app.get('/api/courses/:id', (req, res) => {
     const query = `
@@ -90,14 +90,18 @@ app.get('/api/courses/:id/similar', (req, res) => {
 });
 
 /**
- * [4] POST /sync/{source} (Trigger harvesting) 
- * Εκτελεί το python script που μας έδωσες 
+ * [4] POST /sync/:source (Trigger harvesting) 
  */
 app.post('/api/sync/:source', (req, res) => {
     const source = req.params.source;
-    // Εκτέλεση του harvester script (π.χ. Anast_harvester.py)
-    exec(`python Anast_harvester.py`, (error, stdout, stderr) => {
+    
+    // Χρησιμοποιούμε path που "ανεβαίνει" ένα επίπεδο και μπαίνει στον ml spark
+    // Το ".." σημαίνει πήγαινε πίσω, το "ml\ spark" είναι ο φάκελος
+    const command = `python "../ml\ spark/harvester.py"`;
+
+    exec(command, (error, stdout, stderr) => {
         if (error) {
+            console.error(`Error: ${error.message}`);
             return res.status(500).json({ message: "Sync failed", error: error.message });
         }
         res.json({ message: `Sync completed for ${source}`, output: stdout });
@@ -116,5 +120,4 @@ app.get('/api/internal/spark-data', (req, res) => {
 });
 
 const PORT = 5000;
-
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
