@@ -13,6 +13,8 @@ spark = SparkSession.builder \
 # 2. Φόρτωση του Ενοποιημένου Αποθετηρίου (Βήμα 4.2 & 4.3)
 df = spark.read.option("multiLine", "true").json("unified_repository.json")
 
+df = df.fillna({"summary": "", "title": "", "source_course_id": ""}) #αν summary=null να μην μας βγαλει error στο tokenizer
+
 # 3. Προετοιμασία Δεδομένων (Data Preprocessing - Βήμα 4.4)
 tokenizer = Tokenizer(inputCol="summary", outputCol="words")
 remover = StopWordsRemover(inputCol="words", outputCol="filtered")
