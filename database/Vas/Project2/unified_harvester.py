@@ -3,7 +3,7 @@ import json
 import mysql.connector
 from datetime import datetime
 
-# 1. ΣΥΝΔΕΣΗ ΜΕ ΤΗ ΒΑΣΗ ΣΟΥ (XAMPP Default)
+# 1. ΣΥΝΔΕΣΗ ΜΕ ΤΗ ΒΑΣΗ (XAMPP Default)
 def connect_to_db():
     ports = [3306, 3307] # Οι δύο πιο συνηθισμένες θύρες του XAMPP, για να μην έχουμε διαφορετικές θύρες 
     for port in ports:
