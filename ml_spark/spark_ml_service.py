@@ -15,8 +15,10 @@ df = spark.read.option("multiLine", "true").json("unified_repository.json")
 
 df = df.fillna({"summary": "", "title": "", "source_course_id": ""}) #αν summary=null να μην μας βγαλει error στο tokenizer
 
+df = df.withColumn("full_text", concat_ws(" ", df["title"], df["summary"]))
+
 # 3. Προετοιμασία Δεδομένων (Data Preprocessing - Βήμα 4.4)
-tokenizer = Tokenizer(inputCol="summary", outputCol="words")
+tokenizer = Tokenizer(inputCol="full_text", outputCol="words")
 remover = StopWordsRemover(inputCol="words", outputCol="filtered")
 
 # 4. Vectorization με TF-IDF (Βήμα 4.4.1)
