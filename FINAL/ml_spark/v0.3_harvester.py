@@ -4,6 +4,7 @@ import csv
 import os
 import requests
 import io # Χρειάζεται για να διάβασμα του CSV που έρχεται από το δίκτυο
+from datetime import datetime  # Χρειαζόμαστε αυτό για την ημερομηνία
 
 # --- ΡΥΘΜΙΣΕΙΣ ΒΑΣΗΣ ---
 DB_CONFIG = {
@@ -13,6 +14,9 @@ DB_CONFIG = {
     'database': 'spark',
     'port': 3306
 }
+
+# Η λίστα που θα μαζεύει τα δεδομένα για το Spark
+unified_data_for_spark = []
 
 # --- URLS GITHUB (ΒΑΣΙΣΜΕΝΑ ΣΤΟ SCREENSHOT ΣΟΥ) ---
 # Αυτά είναι τα Raw Links από το repo σου 'dourougouu'
@@ -73,6 +77,18 @@ def upsert_course(cursor, source_id, source_course_id, title, summary, level, ur
                     INSERT IGNORE INTO course_categories (course_id, category_id) 
                     VALUES (%s, %s)
                 """, (c_id, cat_id))
+
+    # Αποθήκευση στη λίστα για το ενιαίο JSON του Spark
+    unified_data_for_spark.append({
+        "source_id": source_id,
+        "source_course_id": str(source_course_id),
+        "title": title,
+        "summary": summary if summary else title,
+        "level_": level,
+        "url": url,
+        "last_updated": datetime.now().strftime("%Y-%m-%d")
+    })
+    
     return c_id
 
 # --- LOGIC ΓΙΑ ΤΟ PATHING (ΤΟΠΙΚΑ ΑΡΧΕΙΑ) ---
@@ -211,12 +227,22 @@ def process_coursera():
 if __name__ == "__main__":
     process_udacity()
     process_coursera()
+
+
+
+#  Εδώ δημιουργείται  το αρχείο JSON
+    print("\n--- ΔΗΜΙΟΥΡΓΙΑ ΕΝΙΑΙΟΥ ΑΠΟΘΕΤΗΡΙΟΥ (JSON) ---")
+    with open('unified_repository.json', 'w', encoding='utf-8') as f:
+        json.dump(unified_data_for_spark, f, ensure_ascii=False, indent=4)
+    print(f"✅ Το αρχείο 'unified_repository.json' δημιουργήθηκε με {len(unified_data_for_spark)} εγγραφές.")
+        
     print("\n Harvesting completed!")
 
 #    (oo)   (oo)   (oo)
 #    /¥ \   /¥ \   /¥ \
 #   _(__)_ _(__)_ _(__)_
 #   HARVEST  HARVEST  HARVEST
+
 
 
 
