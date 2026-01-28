@@ -97,7 +97,7 @@ app.post('/api/sync/:source', (req, res) => {
     
     // Χρησιμοποιούμε path που "ανεβαίνει" ένα επίπεδο και μπαίνει στον ml spark
     // Το ".." σημαίνει πήγαινε πίσω, το "ml\ spark" είναι ο φάκελος
-    const command = `python "../ml\ spark/v0.2_harvester.py"`;
+    const command = `python "../ml\ spark/v0.3_harvester.py"`;
 
     exec(command, (error, stdout, stderr) => {
         if (error) {
@@ -121,4 +121,5 @@ app.get('/api/internal/spark-data', (req, res) => {
 
 const PORT = 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
 
