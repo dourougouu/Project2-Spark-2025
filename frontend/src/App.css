@@ -1,0 +1,73 @@
+/* ==================== App Styles ==================== */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  padding: 0;
+  background-color: #E0CCD5
+  
+}
+
+/* ==================== Global Resets ==================== */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #F5E6E0; /* Το ροζ χρώμα βάσης */
+  overflow-x: hidden;
+}
+
+/* ==================== Header Styles ==================== */
+.header {
+  background-color: #3E5B4E;
+  padding: 15px 30px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.nav-icon {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.nav-icon:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* ==================== Footer Styles ==================== */
+.footer {
+  background-color: #3E5B4E;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: auto;
+}
+
+.footer p {
+  font-size: 14px;
+}
+
+/* ==================== Responsive ==================== */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 20px;
+  }
+}
