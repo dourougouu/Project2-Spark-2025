@@ -1,0 +1,249 @@
+/* ==================== CourseDetails Page Styles ==================== */
+.course-details-page {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #3E5B4E;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  margin-bottom: 25px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.course-details-card {
+  background-color: white;
+  border-radius: 16px;
+  padding: 35px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.course-header {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 30px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #eee;
+}
+
+.course-badge-large {
+  background-color: #3E5B4E;
+  color: white;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.course-header-info h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.course-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.meta-item {
+  font-size: 14px;
+  color: #666;
+}
+
+.meta-item strong {
+  color: #333;
+}
+
+.course-body h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.course-description {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+.course-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #3E5B4E;
+  color: white;
+  text-decoration: none;
+  padding: 14px 24px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.course-link:hover {
+  background-color: #2d4539;
+}
+
+.similar-courses {
+  margin-top: 40px;
+}
+
+.similar-courses h2 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.similar-courses-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.loading, .not-found {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.not-found h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.back-btn {
+  background-color: #3E5B4E;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.back-btn:hover {
+  background-color: #2d4539;
+}
+
+/* ==================== CourseCard Styles ==================== */
+.course-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.course-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.course-badge {
+  background-color: #3E5B4E;
+  color: white;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.course-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.course-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.course-summary {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.4;
+}
+
+.view-details-btn {
+  background-color: #3E5B4E;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.view-details-btn:hover {
+  background-color: #2d4539;
+}
+
+.view-details-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ==================== Responsive ==================== */
+@media (max-width: 600px) {
+  .course-details-card {
+    padding: 20px;
+  }
+
+  .course-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .course-meta {
+    justify-content: center;
+  }
+
+  .course-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .view-details-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

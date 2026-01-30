@@ -1,0 +1,347 @@
+/* ==================== SearchPage Styles ==================== */
+.search-page {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.search-header {
+  margin-bottom: 30px;
+}
+
+.search-form {
+  display: flex;
+  gap: 10px;
+  max-width: 600px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 14px 20px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.search-input:focus {
+  border-color: #3E5B4E;
+}
+
+.search-btn {
+  background-color: #3E5B4E;
+  color: white;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.search-btn:hover {
+  background-color: #2d4539;
+}
+
+.results-header {
+  margin-bottom: 25px;
+}
+
+.results-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.results-count {
+  font-size: 14px;
+  color: #666;
+}
+
+.search-content {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.courses-container {
+  flex: 1;
+}
+
+.courses-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-size: 16px;
+}
+
+.no-results {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: white;
+  border-radius: 12px;
+}
+
+.no-results p {
+  color: #666;
+  font-size: 16px;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+  padding: 20px;
+}
+
+.page-btn {
+  background-color: #3E5B4E;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.page-btn:hover:not(:disabled) {
+  background-color: #2d4539;
+}
+
+.page-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.page-info {
+  font-size: 14px;
+  color: #666;
+}
+
+/* ==================== CourseCard Styles ==================== */
+.course-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.course-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.course-badge {
+  background-color: #3E5B4E;
+  color: white;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.course-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.course-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.course-summary {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.4;
+}
+
+.view-details-btn {
+  background-color: #3E5B4E;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.view-details-btn:hover {
+  background-color: #2d4539;
+}
+
+.view-details-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ==================== FilterSidebar Styles ==================== */
+.filter-sidebar {
+  background-color: white;
+  border-radius: 12px;
+  padding: 25px;
+  min-width: 220px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.filter-title {
+  color: #3E5B4E;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 20px;
+}
+
+.filter-group {
+  margin-bottom: 20px;
+}
+
+.filter-options.scrollable {
+  max-height: 150px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.filter-options.scrollable::-webkit-scrollbar {
+  width: 6px;
+}
+
+.filter-options.scrollable::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.filter-options.scrollable::-webkit-scrollbar-thumb {
+  background: #3E5B4E;
+  border-radius: 3px;
+}
+
+.filter-options.scrollable::-webkit-scrollbar-thumb:hover {
+  background: #2d4539;
+}
+
+.filter-group-title {
+  color: #666;
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.filter-checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 10px;
+  position: relative;
+  padding-left: 30px;
+}
+
+.filter-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 18px;
+  width: 18px;
+  background-color: white;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.filter-checkbox:hover .checkmark {
+  border-color: #3E5B4E;
+}
+
+.filter-checkbox input:checked ~ .checkmark {
+  background-color: #3E5B4E;
+  border-color: #3E5B4E;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 5px;
+  top: 1px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.filter-checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.filter-label {
+  font-size: 14px;
+  color: #333;
+}
+
+/* ==================== Responsive ==================== */
+@media (max-width: 768px) {
+  .search-content {
+    flex-direction: column;
+  }
+
+  .results-header h1 {
+    font-size: 22px;
+  }
+
+  .filter-sidebar {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .course-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .view-details-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
