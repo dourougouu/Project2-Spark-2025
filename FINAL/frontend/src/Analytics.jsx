@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Analytics.css';
 import './BasicPage.css';
 import { Link } from 'react-router-dom';
-import { Home, Search, User, Settings, BarChart3 as AnalyticsIcon } from 'lucide-react';
+import { Home, Search, BookOpen, FileText, BarChart3 as AnalyticsIcon} from 'lucide-react';
 
 const Analytics = () => {
     const [stats, setStats] = useState(null);
@@ -35,8 +35,8 @@ const Analytics = () => {
                     <div className="header-icons">
                         <Link to="/" className="icon-link"><Home className="icon" /></Link>
                         <Link to="/search" className="icon-link"><Search className="icon" /></Link>
-                        <Link to="/profile" className="icon-link"><User className="icon" /></Link>
-                        <Link to="/settings" className="icon-link"><Settings className="icon" /></Link>
+                        <Link to="/course-list" className="icon-link"><FileText className="icon" /></Link>
+                        <Link to="/my-courses" className="icon-link"><BookOpen className="icon" /></Link>
                         <Link to="/analytics" className="icon-link"><AnalyticsIcon className="icon" /></Link>
                     </div>
                 </header>
@@ -60,11 +60,11 @@ const Analytics = () => {
              <div className="page-container">
               <header className="header-bar">
                 <div className="header-icons">
-                  <Link to="/" className="icon-link"><Home className="icon" /></Link>
-                  <Link to="/search" className="icon-link"><Search className="icon" /></Link>
-                  <Link to="/profile" className="icon-link"><User className="icon" /></Link>
-                  <Link to="/settings" className="icon-link"><Settings className="icon" /></Link>
-                  <Link to="/analytics" className="icon-link"><AnalyticsIcon className="icon" /></Link>
+                    <Link to="/" className="icon-link"><Home className="icon" /></Link>
+                    <Link to="/search" className="icon-link"><Search className="icon" /></Link>
+                    <Link to="/course-list" className="icon-link"><FileText className="icon" /></Link>
+                    <Link to="/my-courses" className="icon-link"><BookOpen className="icon" /></Link>
+                    <Link to="/analytics" className="icon-link"><AnalyticsIcon className="icon" /></Link>
                 </div>
               </header>
                 <main className="main-content">
@@ -97,11 +97,11 @@ const Analytics = () => {
         {/* HEADER */}
         <header className="header-bar">
         <div className="header-icons">
-          <Link to="/" className="icon-link"><Home className="icon" /></Link>
-          <Link to="/search" className="icon-link"><Search className="icon" /></Link>
-          <Link to="/profile" className="icon-link"><User className="icon" /></Link>
-          <Link to="/settings" className="icon-link"><Settings className="icon" /></Link>
-          <Link to="/analytics" className="icon-link"><AnalyticsIcon className="icon" /></Link>
+            <Link to="/" className="icon-link"><Home className="icon" /></Link>
+            <Link to="/search" className="icon-link"><Search className="icon" /></Link>
+            <Link to="/course-list" className="icon-link"><FileText className="icon" /></Link>
+            <Link to="/my-courses" className="icon-link"><BookOpen className="icon" /></Link>
+            <Link to="/analytics" className="icon-link"><AnalyticsIcon className="icon" /></Link>
         </div>
       </header>
 
