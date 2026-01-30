@@ -119,7 +119,119 @@ app.get('/api/internal/spark-data', (req, res) => {
     });
 });
 
+
+/**
+ * [6] GET /analytics (Comprehensive Analytics) 
+ */
+app.get('/api/analytics', (req, res) => {
+    // Query για συνολικά μαθήματα
+    const totalQuery = "SELECT COUNT(*) as total FROM courses";
+    
+    // Query για μαθήματα ανά πηγή
+    const bySourceQuery = `
+        SELECT s.name as source_name, COUNT(c.course_id) as count
+        FROM courses c
+        JOIN sources s ON c.source_id = s.source_id
+        GROUP BY s.name
+        ORDER BY count DESC
+    `;
+    
+    // Query για μαθήματα ανά επίπεδο
+    const byLevelQuery = `
+        SELECT level_, COUNT(*) as count
+        FROM courses
+        GROUP BY level_
+        ORDER BY count DESC
+    `;
+    
+    // Query για μαθήματα ανά γλώσσα
+    const byLanguageQuery = `
+        SELECT 
+            COALESCE(NULLIF(language_, ''), 'Unknown') as language_,
+            COUNT(*) as count
+        FROM courses
+        GROUP BY language_
+        ORDER BY count DESC
+    `;
+    
+    // Query για μαθήματα ανά κατηγορία
+    const byCategoryQuery = `
+        SELECT cat.name_of_the_category as category_name, COUNT(cc.course_id) as count
+        FROM categories cat
+        LEFT JOIN course_categories cc ON cat.category_id = cc.category_id
+        GROUP BY cat.category_id
+        HAVING count > 0
+        ORDER BY count DESC
+    `;
+    
+    // Query για πρόσφατες ενημερώσεις
+    const recentUpdatesQuery = `
+        SELECT c.title, c.last_updated, c.level_, s.name as source_name
+        FROM courses c
+        JOIN sources s ON c.source_id = s.source_id
+        WHERE c.last_updated IS NOT NULL
+        ORDER BY c.last_updated DESC
+        LIMIT 10
+    `;
+
+    // Εκτέλεση όλων των queries παράλληλα
+    Promise.all([
+        new Promise((resolve, reject) => {
+            db.query(totalQuery, (err, results) => {
+                if (err) reject(err);
+                else resolve(results[0].total);
+            });
+        }),
+        new Promise((resolve, reject) => {
+            db.query(bySourceQuery, (err, results) => {
+                if (err) reject(err);
+                else resolve(results);
+            });
+        }),
+        new Promise((resolve, reject) => {
+            db.query(byLevelQuery, (err, results) => {
+                if (err) reject(err);
+                else resolve(results);
+            });
+        }),
+        new Promise((resolve, reject) => {
+            db.query(byLanguageQuery, (err, results) => {
+                if (err) reject(err);
+                else resolve(results);
+            });
+        }),
+        new Promise((resolve, reject) => {
+            db.query(byCategoryQuery, (err, results) => {
+                if (err) reject(err);
+                else resolve(results);
+            });
+        }),
+        new Promise((resolve, reject) => {
+            db.query(recentUpdatesQuery, (err, results) => {
+                if (err) reject(err);
+                else resolve(results);
+            });
+        })
+    ])
+    .then(([totalCourses, bySource, byLevel, byLanguage, byCategory, recentUpdates]) => {
+        res.json({
+            totalCourses,
+            bySource,
+            byLevel,
+            byLanguage,
+            byCategory,
+            recentUpdates
+        });
+    })
+    .catch(err => {
+        console.error('Analytics query error:', err);
+        res.status(500).json({ error: 'Failed to fetch analytics', details: err.message });
+    });
+});
+
+
 const PORT = 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
 
 
