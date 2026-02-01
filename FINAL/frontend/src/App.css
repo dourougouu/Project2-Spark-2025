@@ -7,8 +7,17 @@
 
 .main-content {
   flex: 1;
-  padding: 40px 80px;
-  background-color: #F5E6E0;
+  padding: 56px 0 0 0; /* χώρος για το σταθερό πράσινο header – ένα σημείο ελέγχου για όλες τις σελίδες */
+  background-color: #E0CCD5;
+  box-sizing: border-box;
+}
+
+/* ==================== Global Resets ==================== */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #F5E6E0; /* Το ροζ χρώμα βάσης */
+  overflow-x: hidden;
 }
 
 /* ==================== Header Styles ==================== */
@@ -59,6 +68,6 @@
 /* ==================== Responsive ==================== */
 @media (max-width: 768px) {
   .main-content {
-    padding: 20px;
+    padding: 56px 20px 20px 20px;
   }
 }
