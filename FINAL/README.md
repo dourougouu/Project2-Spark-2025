@@ -1,4 +1,4 @@
-<h1>SPARK PROJECT - Course Aggregator Platform</h1>
+<h1><center>SPARK PROJECT - Course Aggregator Platform</center></h1>
 
 # Γενική Περιγραφή και Οδηγίες Εγκατάστασης
 
@@ -95,3 +95,4 @@ frontend, backend, data processing και machine learning(ML)
     npm run dev
       ->Έλεγχος: 1.Πρέπει στο terminal να βγάζει κάτι σαν: ➜  Local:   http://localhost:5173/
                  2.Ανοίγουμε το web browser στο http://localhost:5173/ και πρέπει να εμφανίζεται η ιστοσελίδα μας
+
