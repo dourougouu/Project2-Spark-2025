@@ -1,4 +1,4 @@
-#SPARK PROJECT - Course Aggregator Platform
+<h1>SPARK PROJECT - Course Aggregator Platform</h1>
 
 # Γενική Περιγραφή και Οδηγίες Εγκατάστασης
 
