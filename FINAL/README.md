@@ -9,6 +9,7 @@
 αξιοποιώντας React, Node.js και Apache Spark ML</p>
 
 ## 🎯 Features
+
 <p>
 -> Multi-source Aggregation: Udacity and Coursera courses<br>
 -> Advanced Search: Φιλτράρουμε την αναζήτηση των courses με βάση: γλώσσα|επίπεδο|πηγή|κατηγορία<br>
@@ -21,29 +22,32 @@
 
 Η αρχιτεκτονική του project βασιζεται σε modular και επεκτάσιμη προσέγγιση, με διαχωρισμό ευθυνών μεταξύ<br>
 frontend, backend, data processing και machine learning(ML)<br>
-1] FRONTEND (React)
-Η υλοποίηση έγινε με React και επικοινωνεί με το backend μέσω REST APIs. Παρέχει:
-•Αναζήτηση και φιλτράρισμα μαθημάτων
-•Προβολή προτάσεων μαθημάτων
-•Analytics dashboard με χρήση στατιστικών
-2] BACKEND API (Node.js)
-Η υλοποίηση έγινε με Node.js και ουσιαστικά λειτουργεί ως ενδιάμεσος μεταξύ frontend-data layer
-Γενικα:
-•Ενοποιεί τα δεδομένα από Udacity και Coursera
-•Παρέχει endpoints για:
-‣Αναζήτηση μαθημάτων
-‣Προτάσεις μαθημάτων
-‣Στατιστικά
-3] DATA PROCESSING & ML LAYER (Apache Spark)
-Χρήση του Apache Spark για μαζική επεξεργασία(προεπεξεργασία) δεδομένων, feature extraction(summaries, categories, level)
-καθώς και για υπολογισμό ομοιότητας μαθημάτων. Επίσης, χρήση του Spark για vectorization (TF-IDF/embeddings) και cosine similarity
-για τα recommendations
-4] DATA STORAGE
-Χρήση της MySQL βάσης δεδομένων, μέσω της χρήσης Xampp. Εκεί, κάνουμε την αποθήκευση των δεδομένων (μαθήματα, αποτελέσματα ML, ...)
-5] DATA INGESTION
-Χρήση scheduled jobs για:
-•Ανάκτηση νέων μαθημάτων από APIs
-•Ενημέρωση υπάρχοντων δεδομένων
+<p><ol>
+<li><h2><b>FRONTEND (React)</b></h2></li>
+Η υλοποίηση έγινε με React και επικοινωνεί με το backend μέσω REST APIs. Παρέχει:<br>
+•Αναζήτηση και φιλτράρισμα μαθημάτων<br>
+•Προβολή προτάσεων μαθημάτων<br>
+•Analytics dashboard με χρήση στατιστικών<br>
+<li><h2><b>BACKEND API (Node.js)</b></h2></li>
+Η υλοποίηση έγινε με Node.js και ουσιαστικά λειτουργεί ως ενδιάμεσος μεταξύ frontend-data layer<br>
+Γενικα:<br>
+•Ενοποιεί τα δεδομένα από Udacity και Coursera<br>
+•Παρέχει endpoints για:<br>
+‣Αναζήτηση μαθημάτων<br>
+‣Προτάσεις μαθημάτων<br>
+‣Στατιστικά<br>
+<li><h2><b>DATA PROCESSING & ML LAYER (Apache Spark)</b></h2></li>
+Χρήση του Apache Spark για μαζική επεξεργασία(προεπεξεργασία) δεδομένων, feature extraction(summaries, categories, level)<br>
+καθώς και για υπολογισμό ομοιότητας μαθημάτων. Επίσης, χρήση του Spark για vectorization (TF-IDF/embeddings) και cosine similarity<br>
+για τα recommendations<br>
+<li><h2><b>DATA STORAGE</b></h2></li>
+Χρήση της MySQL βάσης δεδομένων, μέσω της χρήσης Xampp. Εκεί, κάνουμε την αποθήκευση των δεδομένων (μαθήματα, αποτελέσματα ML, ...)<br>
+<li><h2><b>DATA INGESTION</b></h2></li>
+Χρήση scheduled jobs για:<br>
+•Ανάκτηση νέων μαθημάτων από APIs<br>
+•Ενημέρωση υπάρχοντων δεδομένων<br>
+</ol>
+</p>
 
 # 💻 Εγκατάσταση
 
