@@ -12,7 +12,7 @@ DB_CONFIG = {
     'password': '',       
     'host': 'localhost',
     'database': 'spark',
-    'port': 3306
+    'port': 3308
 }
 
 # Η λίστα που θα μαζεύει τα δεδομένα για το Spark
@@ -48,7 +48,7 @@ def get_or_create_category(cursor, cat_name):
     except mysql.connector.Error:
         return None
 
-def upsert_course(cursor, source_id, source_course_id, title, summary, level, url, cats):
+def upsert_course(cursor, source_id, source_course_id, title, summary, level, url, cats, language='English'):
     cursor.execute("SELECT course_id FROM courses WHERE source_id=%s AND source_course_id=%s", 
                    (source_id, source_course_id))
     res = cursor.fetchone()
@@ -57,15 +57,15 @@ def upsert_course(cursor, source_id, source_course_id, title, summary, level, ur
         c_id = res[0]
         # Update (αν θέλουμε να ενημερώνουμε περιγραφές κτλ)
         cursor.execute("""
-            UPDATE courses SET title=%s, summary=%s, level_=%s, url=%s 
+            UPDATE courses SET title=%s, summary=%s, level_=%s, url=%s, language_=%s
             WHERE course_id=%s
-        """, (title, summary, level, url, c_id))
+        """, (title, summary, level, url, language, c_id))
     else:
         # Insert
         cursor.execute("""
-            INSERT INTO courses (source_id, source_course_id, title, summary, level_, url)
-            VALUES (%s, %s, %s, %s, %s, %s)
-        """, (source_id, source_course_id, title, summary, level, url))
+            INSERT INTO courses (source_id, source_course_id, title, summary, level_, url, language_)
+            VALUES (%s, %s, %s, %s, %s, %s, %s)
+        """, (source_id, source_course_id, title, summary, level, url, language))
         c_id = cursor.lastrowid
 
     # Categories Link
@@ -86,6 +86,7 @@ def upsert_course(cursor, source_id, source_course_id, title, summary, level, ur
         "summary": summary if summary else title,
         "level_": level,
         "url": url,
+        "language_": language,
         "last_updated": datetime.now().strftime("%Y-%m-%d")
     })
     
@@ -132,15 +133,21 @@ def process_udacity():
     cursor = conn.cursor()
     sid = get_or_create_source(cursor, "Udacity", "json")
     
-    # Χειρισμός δομής JSON
-    courses_list = data.get('courses', []) if isinstance(data, dict) else data
+    # Χειρισμός δομής JSON: μπορεί να είναι πίνακας [...] ή αντικείμενο { "courses": [...] }
+    if isinstance(data, list):
+        courses_list = data
+    elif isinstance(data, dict):
+        courses_list = data.get('courses', [])
+    else:
+        courses_list = []
     
     count = 0
     for item in courses_list:
         title = item.get('Title') or item.get('title')
         if not title: continue
         
-        summary = item.get('Summary') or item.get('summary') or ''
+        # Udacity JSON έχει "Description" (κεφαλαίο), όχι "Summary"
+        summary = item.get('Description') or item.get('description') or item.get('Summary') or item.get('summary') or ''
         level = item.get('Level') or item.get('level') or 'Unknown'
         url = item.get('Link') or item.get('search_url') or ''
         
@@ -150,11 +157,24 @@ def process_udacity():
         elif 'advanced' in level.lower(): level = 'Advanced'
         else: level = 'Unknown'
 
-        # Categories (αν υπάρχουν ως string "Business, Tech")
-        cats_raw = item.get('affiliates') or '' 
-        cats = [c.strip() for c in cats_raw.split(',') if c.strip()]
+         # Προσθήκη γλώσσας: προσπαθούμε να εντοπίσουμε από τον τίτλο/περιγραφή
+        language = 'English'  # default
+        text_to_check = f"{title} {summary}".lower()
+        if any(word in text_to_check for word in ['español', 'spanish', 'castellano']):
+            language = 'Spanish'
+        elif any(word in text_to_check for word in ['русский', 'russian']):
+            language = 'Russian'
+        elif any(word in text_to_check for word in ['français', 'french']):
+            language = 'French'
+        elif any(word in text_to_check for word in ['deutsch', 'german']):
+            language = 'German'
+        
 
-        upsert_course(cursor, sid, title[:200], title, summary, level, url, cats)
+        # Categories: Udacity JSON έχει "Affiliates" (κεφαλαίο), όχι "affiliates"
+        cats_raw = item.get('Affiliates') or item.get('affiliates') or ''
+        cats = [c.strip() for c in str(cats_raw).split(',') if c.strip()]
+
+        upsert_course(cursor, sid, title[:200], title, summary, level, url, cats, language)
         count += 1
         
     conn.commit()
@@ -199,8 +219,9 @@ def process_coursera():
         if not title: continue
         
         # Το Coursera CSV δεν έχει unique ID, χρησιμοποιούμε τον τίτλο
-        c_id_str = title[:250] 
-        summary = "" # Το CSV σου ίσως δεν έχει summary, το αφήνουμε κενό ή βάζουμε τον τίτλο
+        c_id_str = title[:250]
+        # Το CSV δεν έχει πεδίο description – βάζουμε τίτλο ώστε να μην εμφανίζεται "No description"
+        summary = title
         level = row.get('course_difficulty', 'Unknown')
         url = row.get('course_url', '')
         
@@ -209,11 +230,25 @@ def process_coursera():
         elif 'advanced' in level.lower(): level = 'Advanced'
         else: level = 'Unknown'
 
-        # Skills ως categories
-        skills = row.get('course_skills', '')
-        cats = [c.strip() for c in skills.split(',') if c.strip()]
+        # Προσθήκη γλώσσας: προσπαθούμε να εντοπίσουμε από τον τίτλο/περιγραφή
+        language = 'English'  # default
+        text_to_check = f"{title}".lower()
+        if any(word in text_to_check for word in ['español', 'spanish', 'castellano']):
+            language = 'Spanish'
+        elif any(word in text_to_check for word in ['русский', 'russian']):
+            language = 'Russian'
+        elif any(word in text_to_check for word in ['français', 'french']):
+            language = 'French'
+        elif any(word in text_to_check for word in ['deutsch', 'german']):
+            language = 'German'
+        
 
-        upsert_course(cursor, sid, c_id_str, title, summary, level, url, cats)
+        # Categories: το CSV δεν έχει course_skills, χρησιμοποιούμε organization ως κατηγορία
+        org = (row.get('course_organization') or '').strip()
+        skills = (row.get('course_skills') or '').strip()
+        cats = [c.strip() for c in skills.split(',') if c.strip()] if skills else ([org] if org else [])
+
+        upsert_course(cursor, sid, c_id_str, title, summary, level, url, cats, language)
         count += 1
 
     # Αν ανοίξαμε τοπικό αρχείο, πρέπει να το κλείσουμε
@@ -242,7 +277,4 @@ if __name__ == "__main__":
 #    /¥ \   /¥ \   /¥ \
 #   _(__)_ _(__)_ _(__)_
 #   HARVEST  HARVEST  HARVEST
-
-
-
 
