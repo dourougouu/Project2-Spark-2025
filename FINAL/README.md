@@ -1,26 +1,26 @@
-<h1><center>SPARK PROJECT - Course Aggregator Platform</center></h1>
+<h1><SPARK PROJECT - Course Aggregator Platform</h1>
 
 # Γενική Περιγραφή και Οδηγίες Εγκατάστασης
 
 ## 📋 Overview
 
-Το συγκεκριμένο project είναι ένα Spark project. Πρόκειται για μια οριζόντια πλατφορμα συγκέντρωσης διαδικτυακών
-μαθημάτων, η οποία συλλέγει, επεξεργάζεται και προτείνει μαθήματα από πολλαπλές εκπαιδευτικές πλατφόρμες , αξιοποιώντας
-React, Node.js και Apache Spark ML
+<p>Το συγκεκριμένο project είναι ένα Spark project. Πρόκειται για μια οριζόντια πλατφορμα συγκέντρωσης διαδικτυακών <br>
+μαθημάτων, η οποία συλλέγει, επεξεργάζεται και προτείνει μαθήματα από πολλαπλές εκπαιδευτικές πλατφόρμες , <br>
+αξιοποιώντας React, Node.js και Apache Spark ML</p>
 
 ## 🎯 Features
-
--> Multi-source Aggregation: Udacity and Coursera courses
--> Advanced Search: Φιλτράρουμε την αναζήτηση των courses με βάση: γλώσσα|επίπεδο|πηγή|κατηγορία
--> Machine Learning(ML) για recommendations: Παίρνουμε προτεινόμενα μαθήματα με βάση την ομοιότητα των courses
-Υλοποιήθηκε με cosine similarity|TF-IDF|K-Means
--> Analytics dashboard: Οπτικοποίηση στατιστικών δεδομένων
-->
+<p>
+-> Multi-source Aggregation: Udacity and Coursera courses<br>
+-> Advanced Search: Φιλτράρουμε την αναζήτηση των courses με βάση: γλώσσα|επίπεδο|πηγή|κατηγορία<br>
+-> Machine Learning(ML) για recommendations: Παίρνουμε προτεινόμενα μαθήματα με βάση την ομοιότητα των courses<br>
+Υλοποιήθηκε με cosine similarity|TF-IDF|K-Means<br>
+-> Analytics dashboard: Οπτικοποίηση στατιστικών δεδομένων<br>
+</p>
 
 ## 🏛 Αρχιτεκτονική
 
-Η αρχιτεκτονική του project βασιζεται σε modular και επεκτάσιμη προσέγγιση, με διαχωρισμό ευθυνών μεταξύ
-frontend, backend, data processing και machine learning(ML)
+Η αρχιτεκτονική του project βασιζεται σε modular και επεκτάσιμη προσέγγιση, με διαχωρισμό ευθυνών μεταξύ<br>
+frontend, backend, data processing και machine learning(ML)<br>
 1] FRONTEND (React)
 Η υλοποίηση έγινε με React και επικοινωνεί με το backend μέσω REST APIs. Παρέχει:
 •Αναζήτηση και φιλτράρισμα μαθημάτων
@@ -92,7 +92,6 @@ frontend, backend, data processing και machine learning(ML)
 ### Frontend Setup
 
     Ανοίγουμε άλλο terminal στον φάκελο frontend/ και τρέχουμε:
-    npm run dev
+    npm run dev  (ή npm start)
       ->Έλεγχος: 1.Πρέπει στο terminal να βγάζει κάτι σαν: ➜  Local:   http://localhost:5173/
                  2.Ανοίγουμε το web browser στο http://localhost:5173/ και πρέπει να εμφανίζεται η ιστοσελίδα μας
-
