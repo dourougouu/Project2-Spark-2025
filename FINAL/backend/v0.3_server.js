@@ -220,7 +220,7 @@ app.get('/api/analytics', async (req, res) => {
  */
 app.post('/api/sync/:source', (req, res) => {
     const source = req.params.source;
-    const command = `python "../ml spark/v0.3_harvester.py"`; 
+    const command = `python "../ml spark/v0.4_harvester.py"`; 
 
     exec(command, (error, stdout, stderr) => {
         if (error) {
@@ -244,6 +244,7 @@ app.get('/api/internal/spark-data', (req, res) => {
 // --- SERVER LISTEN ON PORT 5001 ---
 const PORT = 5001; 
 app.listen(PORT, '0.0.0.0', () => console.log(`✅ Server running explicitly on http://127.0.0.1:${PORT}`));
+
 
 
 
