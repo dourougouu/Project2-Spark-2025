@@ -14,7 +14,7 @@
 -> Multi-source Aggregation: Udacity and Coursera courses<br>
 -> Advanced Search: Φιλτράρουμε την αναζήτηση των courses με βάση: γλώσσα|επίπεδο|πηγή|κατηγορία<br>
 -> Machine Learning(ML) για recommendations: Παίρνουμε προτεινόμενα μαθήματα με βάση την ομοιότητα των courses<br>
-   Υλοποιήθηκε με cosine similarity|TF-IDF|K-Means<br>
+&nbsp;Υλοποιήθηκε με cosine similarity|TF-IDF|K-Means<br>
 -> Analytics dashboard: Οπτικοποίηση στατιστικών δεδομένων<br>
 </p>
 
@@ -99,4 +99,5 @@ frontend, backend, data processing και machine learning(ML)<br>
     npm run dev  (ή npm start)
       ->Έλεγχος: 1.Πρέπει στο terminal να βγάζει κάτι σαν: ➜  Local:   http://localhost:5173/
                  2.Ανοίγουμε το web browser στο http://localhost:5173/ και πρέπει να εμφανίζεται η ιστοσελίδα μας
+
 
