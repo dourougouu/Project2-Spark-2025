@@ -1,16 +1,70 @@
 /* ==================== SearchPage Styles ==================== */
 .search-page {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 auto; /* κεντράρισμα ώστε να μην είναι τέρμα αριστερά */
+  padding: 12px 28px 40px; /* το top-clearance γίνεται από το App.css (.main-content) */
+  box-sizing: border-box;
 }
+
+/* --- HEADER BAR STYLES (ΤΩΡΑ ΤΕΡΜΑ ΠΑΝΩ ΑΡΙΣΤΕΡΑ) --- */
+.header-bar {
+  background-color: #3E5B4E;
+  padding: 15px 30px;
+  display: flex;
+  /* ΑΛΛΑΓΗ 1: Στοίχιση αριστερά αντί για κέντρο */
+  justify-content: flex-start; 
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  
+  /* ΑΛΛΑΓΗ 2: "Καρφώνουμε" την μπάρα τέρμα πάνω */
+  position: fixed; /* Σταθερή θέση */
+  top: 0;
+  left: 0;
+  width: 100%; /* Να πιάνει όλο το πλάτος της οθόνης */
+  z-index: 1000; /* Να είναι πάντα πάνω από όλα τα άλλα στοιχεία */
+  box-sizing: border-box; /* Για να μην ξεχειλίζει το padding */
+  border-radius: 0; /* Αφαιρούμε τις στρογγυλεμένες γωνίες για να εφάπτεται πάνω */
+}
+
+.header-icons {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.icon-link {
+  color:#E0CCD5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.icon-link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+/* -------------------------------------------------------- */
 
 .search-header {
   margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
 }
 
 .search-form {
   display: flex;
   gap: 10px;
+  width: 100%;
   max-width: 600px;
 }
 
@@ -237,7 +291,7 @@
 }
 
 .filter-options.scrollable::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #E0CCD5;
   border-radius: 3px;
 }
 
