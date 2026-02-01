@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './Analytics.css';
-import './BasicPage.css';
+import './HomePage.jsx';
 import { Link } from 'react-router-dom';
-import { Home, Search, BookOpen, FileText, BarChart3 as AnalyticsIcon} from 'lucide-react';
+import { Home, Search,  BarChart3 as AnalyticsIcon } from 'lucide-react';
 
 const Analytics = () => {
     const [stats, setStats] = useState(null);
@@ -17,7 +17,7 @@ const Analytics = () => {
         try {
             setLoading(true);
             setError(null);
-            const response = await fetch('http://localhost:5000/api/analytics');
+            const response = await fetch('http://localhost:5001/api/analytics');
             if (!response.ok) throw new Error('Failed to fetch analytics');
             const data = await response.json();
             setStats(data);
@@ -35,8 +35,6 @@ const Analytics = () => {
                     <div className="header-icons">
                         <Link to="/" className="icon-link"><Home className="icon" /></Link>
                         <Link to="/search" className="icon-link"><Search className="icon" /></Link>
-                        <Link to="/course-list" className="icon-link"><FileText className="icon" /></Link>
-                        <Link to="/my-courses" className="icon-link"><BookOpen className="icon" /></Link>
                         <Link to="/analytics" className="icon-link"><AnalyticsIcon className="icon" /></Link>
                     </div>
                 </header>
@@ -60,11 +58,9 @@ const Analytics = () => {
              <div className="page-container">
               <header className="header-bar">
                 <div className="header-icons">
-                    <Link to="/" className="icon-link"><Home className="icon" /></Link>
-                    <Link to="/search" className="icon-link"><Search className="icon" /></Link>
-                    <Link to="/course-list" className="icon-link"><FileText className="icon" /></Link>
-                    <Link to="/my-courses" className="icon-link"><BookOpen className="icon" /></Link>
-                    <Link to="/analytics" className="icon-link"><AnalyticsIcon className="icon" /></Link>
+                  <Link to="/" className="icon-link"><Home className="icon" /></Link>
+                  <Link to="/search" className="icon-link"><Search className="icon" /></Link>
+                  <Link to="/analytics" className="icon-link"><AnalyticsIcon className="icon" /></Link>
                 </div>
               </header>
                 <main className="main-content">
@@ -97,11 +93,9 @@ const Analytics = () => {
         {/* HEADER */}
         <header className="header-bar">
         <div className="header-icons">
-            <Link to="/" className="icon-link"><Home className="icon" /></Link>
-            <Link to="/search" className="icon-link"><Search className="icon" /></Link>
-            <Link to="/course-list" className="icon-link"><FileText className="icon" /></Link>
-            <Link to="/my-courses" className="icon-link"><BookOpen className="icon" /></Link>
-            <Link to="/analytics" className="icon-link"><AnalyticsIcon className="icon" /></Link>
+          <Link to="/" className="icon-link"><Home className="icon" /></Link>
+          <Link to="/search" className="icon-link"><Search className="icon" /></Link>
+          <Link to="/analytics" className="icon-link"><AnalyticsIcon className="icon" /></Link>
         </div>
       </header>
 
@@ -316,10 +310,6 @@ const Analytics = () => {
             </div>
         </main>
 
-        {/* --- FOOTER --- */}
-        <footer className="footer-bar">
-          <p>© 2026 Project Spark</p>
-        </footer>
     
 
     </div>
@@ -327,3 +317,5 @@ const Analytics = () => {
 };
 
 export default Analytics;
+
+
