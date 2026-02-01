@@ -12,7 +12,7 @@ DB_CONFIG = {
     'password': '',       
     'host': 'localhost',
     'database': 'spark',
-    'port': 3308
+    'port': 3306
 }
 
 # Η λίστα που θα μαζεύει τα δεδομένα για το Spark
@@ -277,4 +277,5 @@ if __name__ == "__main__":
 #    /¥ \   /¥ \   /¥ \
 #   _(__)_ _(__)_ _(__)_
 #   HARVEST  HARVEST  HARVEST
+
 
