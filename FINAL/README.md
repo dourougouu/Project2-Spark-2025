@@ -79,7 +79,7 @@ frontend, backend, data processing και machine learning(ML)<br>
 ### Harvester Setup
 
     Ανοίγουμε άλλο terminal στον φάκελο ml_spark/ και τρέχουμε:
-    python v1.0_harvester.py
+    python v1.0_harvester.py  (ή python3 v1.0_harvester.py)
       ->Έλεγχος: 1. Πρέπει να έχει δημιουργηθεί στον φάκελο ml_spark/ το αρχείο: unified_repository.json
                  2. Μεταβαίνουμε στην βάση δεδομένων και πρέπει να έχει γίνει εισαγωγή στον πίνακα courses
                  (http://localhost/phpmyadmin/index.php?route=/sql&pos=0&db=spark&table=courses)
@@ -88,7 +88,7 @@ frontend, backend, data processing και machine learning(ML)<br>
 
     Στο ίδιο terminal για το harvester (ml_spark/) τρέχουμε:
     pip install pyspark
-    python v1.0_spark_ml_service.py
+    python v1.0_spark_ml_service.py  (ή python3 v1.0_spark_ml_service.py)
       ->Έλεγχος: 1. Πρέπει να έχει δημιουργηθεί στον φάκελο ml_spark/ ο φάκελος: ml_results.json
                  2. Μεταβαίνουμε στην βάση δεδομένων και πρέπει να έχει γίνει εισαγωγή στον πίνακα course_similarities
                  (http://localhost/phpmyadmin/index.php?route=/sql&pos=0&db=spark&table=course_similarities)
@@ -99,6 +99,7 @@ frontend, backend, data processing και machine learning(ML)<br>
     npm run dev  (ή npm start)
       ->Έλεγχος: 1.Πρέπει στο terminal να βγάζει κάτι σαν: ➜  Local:   http://localhost:5173/
                  2.Ανοίγουμε το web browser στο http://localhost:5173/ και πρέπει να εμφανίζεται η ιστοσελίδα μας
+
 
 
 
