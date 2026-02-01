@@ -1,2 +1,2 @@
 // Entry point - imports the main JSX file
-import './index.jsx';
+import './main.jsx';
