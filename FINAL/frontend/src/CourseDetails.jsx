@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import './CourseDetails.css';
 
-const API_BASE_URL = 'http://localhost:5000/api';
+
+const API_BASE_URL = 'http://localhost:5001/api';
 
 // ==================== CourseCard Component ====================
 function CourseCard({ course }) {
@@ -122,7 +123,7 @@ function CourseDetails() {
 
         <div className="course-body">
           <h3>Description</h3>
-          <p className="course-description">{course.summary || 'No description available.'}</p>
+          <p className="course-description">{course.summary || course.title || 'No description available.'}</p>
 
           {course.url && (
             <a href={course.url} target="_blank" rel="noopener noreferrer" className="course-link">
