@@ -1,0 +1,97 @@
+#SPARK PROJECT - Course Aggregator Platform
+
+# Γενική Περιγραφή και Οδηγίες Εγκατάστασης
+
+## 📋 Overview
+
+Το συγκεκριμένο project είναι ένα Spark project. Πρόκειται για μια οριζόντια πλατφορμα συγκέντρωσης διαδικτυακών
+μαθημάτων, η οποία συλλέγει, επεξεργάζεται και προτείνει μαθήματα από πολλαπλές εκπαιδευτικές πλατφόρμες , αξιοποιώντας
+React, Node.js και Apache Spark ML
+
+## 🎯 Features
+
+-> Multi-source Aggregation: Udacity and Coursera courses
+-> Advanced Search: Φιλτράρουμε την αναζήτηση των courses με βάση: γλώσσα|επίπεδο|πηγή|κατηγορία
+-> Machine Learning(ML) για recommendations: Παίρνουμε προτεινόμενα μαθήματα με βάση την ομοιότητα των courses
+Υλοποιήθηκε με cosine similarity|TF-IDF|K-Means
+-> Analytics dashboard: Οπτικοποίηση στατιστικών δεδομένων
+->
+
+## 🏛 Αρχιτεκτονική
+
+Η αρχιτεκτονική του project βασιζεται σε modular και επεκτάσιμη προσέγγιση, με διαχωρισμό ευθυνών μεταξύ
+frontend, backend, data processing και machine learning(ML)
+1] FRONTEND (React)
+Η υλοποίηση έγινε με React και επικοινωνεί με το backend μέσω REST APIs. Παρέχει:
+•Αναζήτηση και φιλτράρισμα μαθημάτων
+•Προβολή προτάσεων μαθημάτων
+•Analytics dashboard με χρήση στατιστικών
+2] BACKEND API (Node.js)
+Η υλοποίηση έγινε με Node.js και ουσιαστικά λειτουργεί ως ενδιάμεσος μεταξύ frontend-data layer
+Γενικα:
+•Ενοποιεί τα δεδομένα από Udacity και Coursera
+•Παρέχει endpoints για:
+‣Αναζήτηση μαθημάτων
+‣Προτάσεις μαθημάτων
+‣Στατιστικά
+3] DATA PROCESSING & ML LAYER (Apache Spark)
+Χρήση του Apache Spark για μαζική επεξεργασία(προεπεξεργασία) δεδομένων, feature extraction(summaries, categories, level)
+καθώς και για υπολογισμό ομοιότητας μαθημάτων. Επίσης, χρήση του Spark για vectorization (TF-IDF/embeddings) και cosine similarity
+για τα recommendations
+4] DATA STORAGE
+Χρήση της MySQL βάσης δεδομένων, μέσω της χρήσης Xampp. Εκεί, κάνουμε την αποθήκευση των δεδομένων (μαθήματα, αποτελέσματα ML, ...)
+5] DATA INGESTION
+Χρήση scheduled jobs για:
+•Ανάκτηση νέων μαθημάτων από APIs
+•Ενημέρωση υπάρχοντων δεδομένων
+
+# 💻 Εγκατάσταση
+
+### Θα χρειαστούν τα παρακάτω versions:
+
+    -Node.js v24.12.0
+    -Python 3.11.6
+    -MySQL + Xampp
+    -Java 11.0.29
+    -Git
+
+### Database Setup
+
+    Στο Xampp control panel, κάνουμε start τα modules: Apache και MySQL
+    Έπειτα ανοίγουμε έναν web browser και μεταβαίνουμε στην σελίδα:
+    http://localhost/phpmyadmin/
+    Φτιάχνουμε μια νέα database με όνομα spark και εισάγουμε τον κώδικα
+    που υπάρχει στο αρχείο:
+    v1.0_database.sql
+
+### Backend Setup
+
+    Ανοίγουμε terminal στον φάκελο backend/ και τρέχουμε:
+    npm install express mysql2 cors dotenv (ή απλά npm install)
+    node v1.0_server.js
+      ->Έλεγχος: ανοίγουμε το web browser στο http://127.0.0.1:5001/api/courses
+    και αφήνουμε το terminal να τρέχει στο background
+
+### Harvester Setup
+
+    Ανοίγουμε άλλο terminal στον φάκελο ml_spark/ και τρέχουμε:
+    python v1.0_harvester.py
+      ->Έλεγχος: 1. Πρέπει να έχει δημιουργηθεί στον φάκελο ml_spark/ το αρχείο: unified_repository.json
+                 2. Μεταβαίνουμε στην βάση δεδομένων και πρέπει να έχει γίνει εισαγωγή στον πίνακα courses
+                 (http://localhost/phpmyadmin/index.php?route=/sql&pos=0&db=spark&table=courses)
+
+### Spark Setup
+
+    Στο ίδιο terminal για το harvester (ml_spark/) τρέχουμε:
+    pip install pyspark
+    python v1.0_spark_ml_service.py
+      ->Έλεγχος: 1. Πρέπει να έχει δημιουργηθεί στον φάκελο ml_spark/ ο φάκελος: ml_results.json
+                 2. Μεταβαίνουμε στην βάση δεδομένων και πρέπει να έχει γίνει εισαγωγή στον πίνακα course_similarities
+                 (http://localhost/phpmyadmin/index.php?route=/sql&pos=0&db=spark&table=course_similarities)
+
+### Frontend Setup
+
+    Ανοίγουμε άλλο terminal στον φάκελο frontend/ και τρέχουμε:
+    npm run dev
+      ->Έλεγχος: 1.Πρέπει στο terminal να βγάζει κάτι σαν: ➜  Local:   http://localhost:5173/
+                 2.Ανοίγουμε το web browser στο http://localhost:5173/ και πρέπει να εμφανίζεται η ιστοσελίδα μας
