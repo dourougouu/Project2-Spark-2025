@@ -14,7 +14,7 @@
 -> Multi-source Aggregation: Udacity and Coursera courses<br>
 -> Advanced Search: Φιλτράρουμε την αναζήτηση των courses με βάση: γλώσσα|επίπεδο|πηγή|κατηγορία<br>
 -> Machine Learning(ML) για recommendations: Παίρνουμε προτεινόμενα μαθήματα με βάση την ομοιότητα των courses<br>
-Υλοποιήθηκε με cosine similarity|TF-IDF|K-Means<br>
+   Υλοποιήθηκε με cosine similarity|TF-IDF|K-Means<br>
 -> Analytics dashboard: Οπτικοποίηση στατιστικών δεδομένων<br>
 </p>
 
@@ -23,12 +23,12 @@
 Η αρχιτεκτονική του project βασιζεται σε modular και επεκτάσιμη προσέγγιση, με διαχωρισμό ευθυνών μεταξύ<br>
 frontend, backend, data processing και machine learning(ML)<br>
 <p><ol>
-<li><h2><b>FRONTEND (React)</b></h2></li>
+<li><b><h2>FRONTEND (React)</h2></b></li>
 Η υλοποίηση έγινε με React και επικοινωνεί με το backend μέσω REST APIs. Παρέχει:<br>
 •Αναζήτηση και φιλτράρισμα μαθημάτων<br>
 •Προβολή προτάσεων μαθημάτων<br>
 •Analytics dashboard με χρήση στατιστικών<br>
-<li><h2><b>BACKEND API (Node.js)</b></h2></li>
+<li><b><h2>BACKEND API (Node.js)</h2></b></li>
 Η υλοποίηση έγινε με Node.js και ουσιαστικά λειτουργεί ως ενδιάμεσος μεταξύ frontend-data layer<br>
 Γενικα:<br>
 •Ενοποιεί τα δεδομένα από Udacity και Coursera<br>
@@ -36,13 +36,13 @@ frontend, backend, data processing και machine learning(ML)<br>
 ‣Αναζήτηση μαθημάτων<br>
 ‣Προτάσεις μαθημάτων<br>
 ‣Στατιστικά<br>
-<li><h2><b>DATA PROCESSING & ML LAYER (Apache Spark)</b></h2></li>
+<li><b><h2>DATA PROCESSING & ML LAYER (Apache Spark)</h2></b></li>
 Χρήση του Apache Spark για μαζική επεξεργασία(προεπεξεργασία) δεδομένων, feature extraction(summaries, categories, level)<br>
 καθώς και για υπολογισμό ομοιότητας μαθημάτων. Επίσης, χρήση του Spark για vectorization (TF-IDF/embeddings) και cosine similarity<br>
 για τα recommendations<br>
-<li><h2><b>DATA STORAGE</b></h2></li>
+<li><b><h2>DATA STORAGE</h2></b></li>
 Χρήση της MySQL βάσης δεδομένων, μέσω της χρήσης Xampp. Εκεί, κάνουμε την αποθήκευση των δεδομένων (μαθήματα, αποτελέσματα ML, ...)<br>
-<li><h2><b>DATA INGESTION</b></h2></li>
+<li><b><h2>DATA INGESTION</h2></b></li>
 Χρήση scheduled jobs για:<br>
 •Ανάκτηση νέων μαθημάτων από APIs<br>
 •Ενημέρωση υπάρχοντων δεδομένων<br>
@@ -79,7 +79,7 @@ frontend, backend, data processing και machine learning(ML)<br>
 ### Harvester Setup
 
     Ανοίγουμε άλλο terminal στον φάκελο ml_spark/ και τρέχουμε:
-    python v1.0_harvester.py  (ή python3 v1.0_harvester.py)
+    python v1.0_harvester.py
       ->Έλεγχος: 1. Πρέπει να έχει δημιουργηθεί στον φάκελο ml_spark/ το αρχείο: unified_repository.json
                  2. Μεταβαίνουμε στην βάση δεδομένων και πρέπει να έχει γίνει εισαγωγή στον πίνακα courses
                  (http://localhost/phpmyadmin/index.php?route=/sql&pos=0&db=spark&table=courses)
@@ -88,7 +88,7 @@ frontend, backend, data processing και machine learning(ML)<br>
 
     Στο ίδιο terminal για το harvester (ml_spark/) τρέχουμε:
     pip install pyspark
-    python v1.0_spark_ml_service.py  (ή python3 v1.0_spark_ml_service.py)
+    python v1.0_spark_ml_service.py
       ->Έλεγχος: 1. Πρέπει να έχει δημιουργηθεί στον φάκελο ml_spark/ ο φάκελος: ml_results.json
                  2. Μεταβαίνουμε στην βάση δεδομένων και πρέπει να έχει γίνει εισαγωγή στον πίνακα course_similarities
                  (http://localhost/phpmyadmin/index.php?route=/sql&pos=0&db=spark&table=course_similarities)
@@ -100,6 +100,20 @@ frontend, backend, data processing και machine learning(ML)<br>
       ->Έλεγχος: 1.Πρέπει στο terminal να βγάζει κάτι σαν: ➜  Local:   http://localhost:5173/
                  2.Ανοίγουμε το web browser στο http://localhost:5173/ και πρέπει να εμφανίζεται η ιστοσελίδα μας
 
+# 🌐 API Endpoints (Backend)
+Το backend μας παρέχει τα παρακάτω endpoints:
+<b><h3>METHOD        ENDPOINT                         ΠΕΡΙΓΡΑΦΗ</h3></b><br>
+<p>     GET          /api/courses                     Λίστα μαθημάτων <br></p>
+<p>     GET          /api/courses/:id                 Λεπτομέριες μαθήματος <br></p>
+<p>     GET          /api/courses/:id/similar         Παρόμοια μαθήματα <br></p>
+<p>     GET          /api/analytics                   Στατιστικά μαθημάτων <br></p>
+<p>     GET          /api/filters                     Διαθέσιμα φίλτρα <br></p>
 
-
+## 👥 Συμμετέχοντες  
+<ul>
+<li>Βενετσάνου Αναστασία</li>
+<li>Δρούγκα Μαρία</li>
+<li>Πασσάκου Βασιλική</li>
+<li>Χατζηδούκας Ευστράτιος</li>
+</ul>
 
