@@ -2,8 +2,9 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './SearchPage.css';
+import { Home, Search,  BarChart3 as AnalyticsIcon } from 'lucide-react';
 
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = 'http://localhost:5001/api';
 
 // ==================== CourseCard Component ====================
 function CourseCard({ course }) {
@@ -250,6 +251,8 @@ function SearchPage() {
 
   return (
     <div className="search-page">
+      {/* Το πράσινο header εμφανίζεται από το App.jsx – εδώ μόνο το περιεχόμενο της σελίδας */}
+
       {/* Search Header */}
       <div className="search-header">
         <form onSubmit={handleSearch} className="search-form">
