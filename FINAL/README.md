@@ -83,7 +83,7 @@ frontend, backend, data processing και machine learning(ML)<br>
     και αφήνουμε το terminal να τρέχει στο background
 
 ### Harvester Setup
-
+    import mysql.connector
     Ανοίγουμε άλλο terminal στον φάκελο ml_spark/ και τρέχουμε:
     pip install requests mysql-connector-python
     python v1.0_harvester.py
@@ -95,14 +95,14 @@ frontend, backend, data processing και machine learning(ML)<br>
 
     Στο ίδιο terminal για το harvester (ml_spark/) τρέχουμε:
     pip install pyspark 
-    (pip install pyspark requests mysql-connector-python)
+    pip install requests
     python v1.0_spark_ml_service.py
       ->Έλεγχος: 1. Πρέπει να έχει δημιουργηθεί στον φάκελο ml_spark/ ο φάκελος: ml_results.json
                  2. Μεταβαίνουμε στην βάση δεδομένων και πρέπει να έχει γίνει εισαγωγή στον πίνακα course_similarities
                  (http://localhost/phpmyadmin/index.php?route=/sql&pos=0&db=spark&table=course_similarities)
 
 ### Frontend Setup
-
+    npm install lucide-react (Εγκαθιστά τη βιβλιοθήκη για τα Εικονίδια)
     Ανοίγουμε άλλο terminal στον φάκελο frontend/ και τρέχουμε:
     npm install
     npm run dev  (ή npm start)
@@ -125,5 +125,6 @@ frontend, backend, data processing και machine learning(ML)<br>
 <li>Πασσάκου Βασιλική</li>
 <li>Χατζηδούκας Ευστράτιος</li>
 </ul>
+
 
 
