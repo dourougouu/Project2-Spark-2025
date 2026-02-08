@@ -75,7 +75,7 @@ similarity_df = spark.createDataFrame(similarity_list, schema=schema)
 results.select("title", "internal_id", "cluster_id").write.mode("overwrite").json("ml_results.json")
 
 # 9. Αποθήκευση και στην sql
-database_url = "jdbc:mysql://127.0.0.1:3308/spark"
+database_url = "jdbc:mysql://127.0.0.1:3306/spark"
 database_properties = {
     'user': 'root',
     'password': '',       
