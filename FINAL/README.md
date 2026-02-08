@@ -103,6 +103,7 @@ frontend, backend, data processing και machine learning(ML)<br>
 
 ### Frontend Setup
     npm install lucide-react (Εγκαθιστά τη βιβλιοθήκη για τα Εικονίδια)
+     npm install react-router-dom
     Ανοίγουμε άλλο terminal στον φάκελο frontend/ και τρέχουμε:
     npm install
     npm run dev  (ή npm start)
@@ -125,6 +126,7 @@ frontend, backend, data processing και machine learning(ML)<br>
 <li>Πασσάκου Βασιλική</li>
 <li>Χατζηδούκας Ευστράτιος</li>
 </ul>
+
 
 
 
