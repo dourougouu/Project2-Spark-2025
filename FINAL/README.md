@@ -58,6 +58,12 @@ frontend, backend, data processing και machine learning(ML)<br>
     -MySQL + Xampp
     -Java 11.0.29
     -Git
+    !Σημαντικό σημείο για το Apache Spark:
+    Πρέπει να υπάρχει ορισμένη η μεταβλητή περιβάλλοντος JAVA_HOME.
+
+    Windows(PowerShell): setx JAVA_HOME "C:\Program Files\Java\jdk-11"
+    Mac/Linux: export JAVA_HOME=$(/usr/libexec/java_home -v 11)
+    Ή με επεξεργασία των μεταβλητών περιβάλλοντος-χρήστη (Ρυθμίσεις Συστήματος για Προχωρημένους)
 
 ### Database Setup
 
@@ -79,6 +85,7 @@ frontend, backend, data processing και machine learning(ML)<br>
 ### Harvester Setup
 
     Ανοίγουμε άλλο terminal στον φάκελο ml_spark/ και τρέχουμε:
+    pip install requests mysql-connector-python
     python v1.0_harvester.py
       ->Έλεγχος: 1. Πρέπει να έχει δημιουργηθεί στον φάκελο ml_spark/ το αρχείο: unified_repository.json
                  2. Μεταβαίνουμε στην βάση δεδομένων και πρέπει να έχει γίνει εισαγωγή στον πίνακα courses
@@ -87,7 +94,8 @@ frontend, backend, data processing και machine learning(ML)<br>
 ### Spark Setup
 
     Στο ίδιο terminal για το harvester (ml_spark/) τρέχουμε:
-    pip install pyspark
+    pip install pyspark 
+    (pip install pyspark requests mysql-connector-python)
     python v1.0_spark_ml_service.py
       ->Έλεγχος: 1. Πρέπει να έχει δημιουργηθεί στον φάκελο ml_spark/ ο φάκελος: ml_results.json
                  2. Μεταβαίνουμε στην βάση δεδομένων και πρέπει να έχει γίνει εισαγωγή στον πίνακα course_similarities
@@ -96,6 +104,7 @@ frontend, backend, data processing και machine learning(ML)<br>
 ### Frontend Setup
 
     Ανοίγουμε άλλο terminal στον φάκελο frontend/ και τρέχουμε:
+    npm install
     npm run dev  (ή npm start)
       ->Έλεγχος: 1.Πρέπει στο terminal να βγάζει κάτι σαν: ➜  Local:   http://localhost:5173/
                  2.Ανοίγουμε το web browser στο http://localhost:5173/ και πρέπει να εμφανίζεται η ιστοσελίδα μας
@@ -116,4 +125,5 @@ frontend, backend, data processing και machine learning(ML)<br>
 <li>Πασσάκου Βασιλική</li>
 <li>Χατζηδούκας Ευστράτιος</li>
 </ul>
+
 
